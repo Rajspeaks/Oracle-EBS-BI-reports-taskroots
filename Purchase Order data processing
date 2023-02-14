@@ -1,4 +1,34 @@
--- Creating a table RD_TEST where first 10 rows of data from will be duplicated.
+Create one package which should cotain :
+procedure 1 is for deriving data and inserting to temp table
+procedure 2 is for deriving data from temp table and print
+procedure 3 is for handle all the exceptions.
+
+table: po_headers_all, PO_LINES_ALL    
+columns: 
+po_header_id,     
+agent_id,            
+type_lookup_code,            
+last_update_date,            
+last_updated_by,            
+segment1,           
+summary_flag,            
+enabled_flag,            
+style_id            
+po_line_id,            
+line_type_id,            
+line_num
+------------------------------------------------------------------------------------------------------------------------------
+## Solution:
+Created a temp table RD_TEST where data has been inserted (First 10 rows) from PO_HEADERS_ALL and PO_LINES_ALL.
+Created first a specificiation of package RD_PACK;
+Defined the package RD_PACK in the next step with its three consecutive procedures.
+RD_INS is the first procedure to insert data into RD_TEST temp table from the main table.
+RD_PRINT is the second procedure to print data from RD_TEST.
+MAIN is the third and ultimate procedure to run both of the above procedures on the basis of one condition,
+-- if the SEGMENT1 == 401100 (priviously it was 2521, later data is updated) then only the data will be printed with a customized successful message in the Log message, 
+otherwise it will give customized error message both on output page and log messages. 
+Took a parameter P_SEGMENT1.
+
 
 CREATE OR REPLACE PACKAGE RD_PACK
 IS
